@@ -1,40 +1,81 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My Blog</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/all.min.css">
-    </head>
-    <body>
+
+    <section>
         <div class="container">
-            <div class="header">
-                <h1>MyBlog</h1>
+            <div class="card large-card">
+                <img src="model.png" alt="Model Image">
+            </div>
+            <div class="card small-card">
+                <img src="produk1.png" alt="Product 1">
+            </div>
+            <div class="card small-card">
+                <img src="produk1.png" alt="Product 2">
+            </div>
+            <div class="card small-card">
+                <img src="produk1.png" alt="Product 3">
+            </div>
+            <div class="card small-card">
+                <img src="produk1.png" alt="Product 4">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>EXPLORE CHANEL.COM</h4>
                 <ul>
-                    <li><a href="index.php">Beranda</a></li>
-                    <li><a href="#">Tentang</a></li>
-                    <li><a href="#">Artikel</a></li>
-                    <li><a href="#">Produk</a></li>
-                    <li><a href="#">Layanan</a></li>
-                    <li><a href="#">Tentang</a></li>
-                    <li class="login"><a href="admin/login.php"><i class="fa fa-user-lock"></i> Login</a></li>
+                    <li><a href="#">Haute Couture</a></li>
+                    <li><a href="#">Fashion</a></li>
+                    <li><a href="#">High Jewelry</a></li>
+                    <li><a href="#">Fine Jewelry</a></li>
+                    <li><a href="#">Watches</a></li>
+                    <li><a href="#">Eyewear</a></li>
+                    <li><a href="#">Fragrance</a></li>
+                    <li><a href="#">Makeup</a></li>
+                    <li><a href="#">Skincare</a></li>
+                    <li><a href="#">Sitemap</a></li>
                 </ul>
             </div>
-            <div class="hero"></div>
-            <div class="content">
-                <div class="main">
-                    <h2 class="judul">Halaman Beranda</h2>
-                    <p class="penulis">Ditulis oleh: Lalan Jaelani 05 Mei 2025</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, magnam. Libero quod voluptates voluptas eum porro a, perspiciatis placeat animi. Sapiente magni neque iure dolores, temporibus doloribus! Minima, ab porro!</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum nesciunt quisquam beatae exercitationem facilis aliquam, saepe, eos harum perferendis tenetur placeat molestias debitis explicabo eveniet? Nulla quisquam saepe eius obcaecati ratione odit architecto! Tenetur earum accusamus sequi officia quos natus voluptate amet qui nostrum omnis reprehenderit doloremque error veniam mollitia corrupti laudantium vitae ad iste in magni, quibusdam atque laboriosam quasi. Facilis earum dolore vero molestiae iusto sapiente omnis mollitia ex commodi quis repellendus dolores natus deleniti ducimus odio, temporibus amet quas alias. Veniam, ad vitae minus dolores accusamus laudantium tempore officiis dignissimos illo necessitatibus iste error, perferendis aliquam aspernatur.</p>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto nostrum unde voluptatum odio aliquam, omnis inventore beatae. Ab, illo. Rerum eos maxime quasi. Explicabo molestias vitae recusandae id consequatur consequuntur suscipit exercitationem praesentium cum officia quidem dignissimos accusamus assumenda, quam minus iusto omnis excepturi dolore cupiditate quos voluptatem veritatis? Numquam?</p>
-                </div>
-                <div class="sidebar">
-                    <img src="img/article.png" alt="foto artikel">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi sequi possimus culpa rerum, laudantium veniam optio minima ullam natus ducimus incidunt quisquam reprehenderit eaque nulla doloribus debitis consectetur, ut nostrum.</p>
-                </div>
-                <div class="clear"></div>
+            <div class="footer-column">
+                <h4>ONLINE SERVICES</h4>
+                <ul>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Shipping Options</a></li>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Care & Services</a></li>
+                </ul>
             </div>
-            <div class="footer"></div>
+            <div class="footer-column">
+                <h4>BOUTIQUE SERVICES</h4>
+                <ul>
+                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="#">Book an Appointment</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>THE HOUSE OF CHANEL</h4>
+                <ul>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Do Not Sell or Share My Personal Information</a></li>
+                    <li><a href="#">Report to Society</a></li>
+                    <li><a href="#">Fighting Counterfeits</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                    <li><a href="#">California Transparency in Supply Chains</a></li>
+                    <li><a href="#">CHANEL Racial Justice Efforts</a></li>
+                    <li><a href="#">Transparency in Coverage</a></li>
+                    <li><a href="#">Sustainability-Linked Bond Update</a></li>
+                    <li><a href="#">Responsible Jewellery Statement</a></li>
+                    <li><a href="#">Consumer Health Data Privacy Notice</a></li>
+                </ul>
+            </div>
         </div>
-    </body>
-</html>
+        <div class="footer-bottom">
+            &copy; 2025 Chanel. All rights reserved.
+
+            
+        </div>
+    </footer>

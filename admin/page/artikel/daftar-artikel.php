@@ -5,8 +5,8 @@
 <div class="row">
   <div class="col">
     <div class="mb-4 mt-2">
-      <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Artikel</a>
-    </div>
+      <a href="tambah-artikel.php" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Artikel</a>
+  </div>
     <table class="table table-hover">
       <thead>
         <tr>

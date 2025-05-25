@@ -1,9 +1,9 @@
 <?php
-require_once '../model/auth.php';
-
+ini_set('display_errors', 0);
 header('Content-Type: application/json');
+session_start();
 
-$auth = new Auth();
+require_once __DIR__ . '/../model/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -14,32 +14,36 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$auth   = new Auth();
+$email  = $_POST['email']    ?? '';
+$pass   = $_POST['password'] ?? '';
+
 try {
-    // ambil data
-    $email    = $_POST['email']    ?? '';
-    $password = $_POST['password'] ?? '';
+    $userId = $auth->login($email, $pass);
+    if ($userId) {
+        $user = $auth->getUserById($userId);
 
-    // panggil model
-    $login = $auth->login($email, $password);
+        // simpan level dan email di session
+        $_SESSION['level'] = $user['level'];
+        $_SESSION['email'] = $user['email'];
 
-    if ($login) {
-        // kredensial valid
         echo json_encode([
-            'success' => true
+            'success'     => true,
+            'redirect_to' => ($user['level'] == 0)
+                                ? 'dashboard.php'
+                                : '../index.php'
         ]);
     } else {
-        // kredensial salah
         echo json_encode([
             'success' => false,
             'message' => 'Email atau password salah.'
         ]);
     }
-
 } catch (Exception $e) {
-    // kalau ada error di server (misal DB down)
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'message' => 'Server error: ' . $e->getMessage()
+        'message' => 'Server error.'
     ]);
 }
+// jangan tutup PHP tag

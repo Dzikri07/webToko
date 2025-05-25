@@ -1,33 +1,37 @@
 <?php
 session_start();
-
-
 require_once 'koneksi.php';
 
-class Auth extends koneksi{
-
+class Auth extends koneksi {
     private $conn;
-    public function __construct(){
+
+    public function __construct() {
         parent::__construct();
-        $this->conn = $this -> getConnection();
+        $this->conn = $this->getConnection();
     }
 
-    public function login($email, $password){
-        $sql = "SELECT * FROM auth WHERE email = '$email'";
-        $query = $this->conn->query($sql);
+    public function login($email, $password) {
+        $stmt = $this->conn->prepare("SELECT * FROM auth WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if($query->num_rows > 0){
-            $row = $query->fetch_array();
-            if(password_verify($password, $row['password'])){
-                // echo "berhasil login";
+        if ($row = $result->fetch_assoc()) {
+            if (password_verify($password, $row['password'])) {
                 $_SESSION['id_pengguna'] = $row['id_pengguna'];
                 return $row['id_pengguna'];
-        }else {
-            return false;
-            // echo "gagal login";
+            }
         }
+        return false;
     }
-}}
+
+    public function getUserById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM auth WHERE id_pengguna = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+}
 
 
 // $auth = new Auth();

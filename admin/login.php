@@ -17,11 +17,11 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-      integrity="sha512-Vz6+YzCUPPsgmYsgPIZex9P0cwF1ariDm+oC9ZHQmVcFY1dQG+jpsE+BkvQXgq6edRzjYLHGKuWl5Q5vPvd3bw=="
       crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" crossorigin="anonymous"></script>
 
     <style>
       /* ===== Color Palette & Base ===== */
@@ -175,82 +175,70 @@
     <script src="../assets/js/popper.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/font-awesome/js/all.min.js"></script>
+      <script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = this.email.value.trim();
+  const pass  = this.password.value.trim();
 
-    <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = this.email.value.trim();
-      const pass  = this.password.value.trim();
-
-      // validasi kosong
-      if (!email || !pass) {
-        return Swal.fire({
-          title: 'Oops...',
-          text: 'Email dan Password tidak boleh kosong!',
-          icon: 'warning',
-          customClass: { popup: 'animate__animated animate__fadeInDown' }
-        });
-      }
-
-      // siapkan timeout 5 detik
-      const controller = new AbortController();
-      const timeoutId  = setTimeout(() => controller.abort(), 5000);
-
-      // kirim URL-encoded, agar PHP bisa baca via $_POST
-      const body = new URLSearchParams({ email, password: pass });
-
-      fetch(this.action, {
-        method: this.method.toUpperCase(),
-        body,
-        signal: controller.signal
-      })
-      .then(res => {
-        clearTimeout(timeoutId);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
-      })
-      .then(data => {
-        if (data.success) {
-          // → Login Berhasil
-          return Swal.fire({
-            icon: 'success',
-            title: 'Login Berhasil',
-            showConfirmButton: false,
-            timer: 1200
-          }).then(() => window.location.href = 'dashboard.php');
-        }
-        // → Kredensial Salah
-        return Swal.fire({
-          title: '<strong>Login <u>Gagal</u></strong>',
-          html: data.message || 'Email atau password salah.',
-          icon: 'error',
-          showCancelButton: true,
-          confirmButtonText: 'Coba Lagi',
-          cancelButtonText: 'Batal',
-          customClass: {
-            popup: 'animate__animated animate__shakeX',
-            confirmButton: 'swal2-confirm',
-            cancelButton: 'swal2-cancel'
-          },
-          backdrop: 'rgba(34,40,49,0.8) no-repeat'
-        }).then(result => {
-          if (result.isConfirmed) this.reset();
-        });
-      })
-      .catch(err => {
-        // → Error server / timeout
-        const isTimeout = err.name === 'AbortError';
-        Swal.fire({
-          icon: 'error',
-          title: isTimeout ? 'Timeout!' : 'Error',
-          text: isTimeout
-            ? 'Server tidak merespon dalam 5 detik. Coba lagi nanti.'
-            : 'Gagal terhubung ke server.',
-          confirmButtonText: 'OK',
-          customClass: { popup: 'animate__animated animate__fadeInDown' }
-        });
-      });
+  if (!email || !pass) {
+    return Swal.fire({
+      title: 'Oops...',
+      text: 'Email dan Password tidak boleh kosong!',
+      icon: 'warning',
+      customClass: { popup: 'animate__animated animate__fadeInDown' }
     });
-    </script>
+  }
+
+  const body = new URLSearchParams({ email, password: pass });
+
+  fetch(this.action, {
+    method: this.method.toUpperCase(),
+    body
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  })
+  .then(data => {
+    if (data.success) {
+      return Swal.fire({
+        icon: 'success',
+        title: 'Login Berhasil',
+        showConfirmButton: false,
+        timer: 1200
+      }).then(() => {
+        window.location.href = data.redirect_to;
+      });
+    }
+    return Swal.fire({
+      title: '<strong>Login <u>Gagal</u></strong>',
+      html: data.message || 'Email atau password salah.',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonText: 'Coba Lagi',
+      cancelButtonText: 'Batal',
+      customClass: {
+        popup: 'animate__animated animate__shakeX',
+        confirmButton: 'swal2-confirm',
+        cancelButton: 'swal2-cancel'
+      },
+      backdrop: 'rgba(34,40,49,0.8) no-repeat'
+    }).then(result => {
+      if (result.isConfirmed) this.reset();
+    });
+  })
+  .catch(err => {
+    Swal.fire({
+      icon: 'error',
+      title: err.message.includes('HTTP') ? 'Error' : 'Timeout!',
+      text: err.message,
+      confirmButtonText: 'OK',
+      customClass: { popup: 'animate__animated animate__fadeInDown' }
+    });
+  });
+});
+</script>
+
   </body>
 </html>
