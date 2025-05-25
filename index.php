@@ -24,7 +24,6 @@
 <!-- NAVBAR -->
 <div class="top-menu">
   <div class="top-menu__left">
-    <!-- Tampilkan nama user di sini -->
     <?php if (!empty($_SESSION['email'])): ?>
       <span>Welcome, <?= htmlspecialchars($_SESSION['email'], ENT_QUOTES) ?></span>
     <?php else: ?>
@@ -37,10 +36,8 @@
     <a href="#">Join Us</a>
 
     <?php if (empty($_SESSION['email'])): ?>
-      <!-- Belum login: Sign In -->
       <a href="admin/login.php" class="sign-in">Sign In</a>
     <?php else: ?>
-      <!-- Sudah login: Keluar -->
       <a href="admin/logout.php" class="sign-out">Keluar</a>
     <?php endif; ?>
   </div>

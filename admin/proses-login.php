@@ -23,7 +23,6 @@ try {
     if ($userId) {
         $user = $auth->getUserById($userId);
 
-        // simpan level dan email di session
         $_SESSION['level'] = $user['level'];
         $_SESSION['email'] = $user['email'];
 
@@ -46,4 +45,4 @@ try {
         'message' => 'Server error.'
     ]);
 }
-// jangan tutup PHP tag
+
